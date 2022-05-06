@@ -1,19 +1,25 @@
 import React from "react";
 
-const CommentDetail = ({ avatar, name, date }) => {
+import { faker } from "@faker-js/faker";
+
+console.dir(faker);
+
+const CommentDetail = (props) => {
   return (
     <div className="comment">
       <a href="/" className="avatar">
-        <img alt="user" src={avatar} />
+        <img alt="user" src={faker.image.avatar()} />
       </a>
       <div className="content">
         <a href="/" className="author">
-          {name}
+          {faker.name.findName()}
         </a>
         <div className="metadata">
-          <span className="date">{date}</span>
+          <span className="date">
+            {Intl.DateTimeFormat(faker.locale).format(faker.date.recent())}
+          </span>
         </div>
-        <div className="text">How artistic!</div>
+        <div className="text">{props.text}</div>
       </div>
     </div>
   );
